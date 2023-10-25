@@ -10,7 +10,7 @@ function pigLatin(word) {
 // function pigLatin(word) {
 // 	const vowelsArray = ["a", "e", "i", "o", "u"];
 // 	const consonantsArray = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"];
-	
+
 // 	let wordArray = word.split("");
 // 	let firstLetter = wordArray[0];
 
@@ -35,6 +35,15 @@ function pigLatin(word) {
 const vowelsArray = ["a", "e", "i", "o", "u"]
 const consonantsArray = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"]
 const letterQ = ["q"]
+
+//This is our newest experimental function
+// function textToInputArray(text) {
+//     let inputArray = text.split(" ");
+//     console.log(inputArray);
+//     inputArray.forEach(function (element) {
+//         pigLatin(element);
+//     })
+// }
 
 function consonantDetector(consonantsArray, firstLetter) {
     for (let i = 0; i < consonantsArray.length; i += 1) {
@@ -73,6 +82,13 @@ function consonantDetector4(consonantsArray, fourthLetter) {
     return false;
 }
 
+function quDetector(quLetters) {
+    if (quLetters === "qu") {
+        return true;
+    };
+}
+
+
 function pigLatin(word) {
     let output;
     let wordArray = word.split("");
@@ -81,9 +97,15 @@ function pigLatin(word) {
     let firstLetter = wordArray[0];
     let secondLetter = wordArray[1];
     let thirdLetter = wordArray[2];
-    let fourthLetter = wordArray [3];
+    let fourthLetter = wordArray[3];
+    let quLetters = wordArray[0] + wordArray[1];
     console.log(firstLetter);
-    if (consonantDetector(consonantsArray, firstLetter) && consonantDetector2(consonantsArray, secondLetter) && consonantDetector3(consonantsArray, thirdLetter) && consonantDetector4(consonantsArray, fourthLetter)) {
+    if (quDetector(quLetters)) {
+        wordArray.shift();
+        wordArray.shift();
+        wordArray.push(quLetters)
+        output = wordArray.join("") + "ay";
+    } else if (consonantDetector(consonantsArray, firstLetter) && consonantDetector2(consonantsArray, secondLetter) && consonantDetector3(consonantsArray, thirdLetter) && consonantDetector4(consonantsArray, fourthLetter)) {
         wordArray.shift();
         wordArray.shift();
         wordArray.shift();
@@ -97,9 +119,9 @@ function pigLatin(word) {
         wordArray.push(firstLetter, secondLetter, thirdLetter);
         output = wordArray.join("") + "ay";
     } else if (consonantDetector(consonantsArray, firstLetter) && consonantDetector2(consonantsArray, secondLetter)) {
-				wordArray.shift();
-				wordArray.shift();
-		wordArray.push(firstLetter, secondLetter);
+        wordArray.shift();
+        wordArray.shift();
+        wordArray.push(firstLetter, secondLetter);
         output = wordArray.join("") + "ay";
     } else if (consonantDetector(consonantsArray, firstLetter)) {
         wordArray.shift();
@@ -110,6 +132,3 @@ function pigLatin(word) {
     }
     return output;
 }
-
-// Test 4: "For words beginning with 2 consonants it will move the first 2 
-// letters to the end and add 'ay"."
