@@ -5,6 +5,7 @@ function pigLatin(word) {
     return result;
 }
 
+
 // chatGPT code that passes tests 2 and 3
 // function pigLatin(word) {
 // 	const vowelsArray = ["a", "e", "i", "o", "u"];
@@ -31,35 +32,84 @@ function pigLatin(word) {
 
 // This is our code that passes tests 2 and 3
 
-// const vowelsArray = ["a", "e", "i", "o", "u"]
-// const consonantsArray = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"]
-// const letterQ = ["q"]
+const vowelsArray = ["a", "e", "i", "o", "u"]
+const consonantsArray = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"]
+const letterQ = ["q"]
 
-// function consonantDetector(consonantsArray, firstLetter) {
-//     for (let i = 0; i < consonantsArray.length; i += 1) {
-//         if (consonantsArray[i] === firstLetter) {
-//             return true;
-//         };
-//         console.log("Looped");
-//     }
-//     return false;
-// }
+function consonantDetector(consonantsArray, firstLetter) {
+    for (let i = 0; i < consonantsArray.length; i += 1) {
+        if (consonantsArray[i] === firstLetter) {
+            return true;
+        };
+        console.log("Looped");
+    }
+    return false;
+}
+function consonantDetector2(consonantsArray, secondLetter) {
+    for (let i = 0; i < consonantsArray.length; i += 1) {
+        if (consonantsArray[i] === secondLetter) {
+            return true;
+        };
+        console.log("Looped");
+    }
+    return false;
+}
+function consonantDetector3(consonantsArray, thirdLetter) {
+    for (let i = 0; i < consonantsArray.length; i += 1) {
+        if (consonantsArray[i] === thirdLetter) {
+            return true;
+        };
+        console.log("Looped");
+    }
+    return false;
+}
+function consonantDetector4(consonantsArray, fourthLetter) {
+    for (let i = 0; i < consonantsArray.length; i += 1) {
+        if (consonantsArray[i] === fourthLetter) {
+            return true;
+        };
+        console.log("Looped");
+    }
+    return false;
+}
 
-// function pigLatin(word) {
-//     let output;
-//     let wordArray = word.split("");
-//     console.log(wordArray);
-//     console.log(wordArray[0]);
-//     let firstLetter = wordArray[0];
-//     console.log(firstLetter);
-//     if (consonantDetector(consonantsArray, firstLetter)) {
-//         wordArray.shift();
-//         wordArray.push(firstLetter);
-//         output = wordArray.join("") + "ay";
-//     } else {
-//         output = wordArray.join("") + "way";
-//     }
-//     return output;
-// }
+function pigLatin(word) {
+    let output;
+    let wordArray = word.split("");
+    console.log(wordArray);
+    console.log(wordArray[0]);
+    let firstLetter = wordArray[0];
+    let secondLetter = wordArray[1];
+    let thirdLetter = wordArray[2];
+    let fourthLetter = wordArray [3];
+    console.log(firstLetter);
+    if (consonantDetector(consonantsArray, firstLetter) && consonantDetector2(consonantsArray, secondLetter) && consonantDetector3(consonantsArray, thirdLetter) && consonantDetector4(consonantsArray, fourthLetter)) {
+        wordArray.shift();
+        wordArray.shift();
+        wordArray.shift();
+        wordArray.shift();
+        wordArray.push(firstLetter, secondLetter, thirdLetter, fourthLetter);
+        output = wordArray.join("") + "ay";
+    } else if (consonantDetector(consonantsArray, firstLetter) && consonantDetector2(consonantsArray, secondLetter) && consonantDetector3(consonantsArray, thirdLetter)) {
+        wordArray.shift();
+        wordArray.shift();
+        wordArray.shift();
+        wordArray.push(firstLetter, secondLetter, thirdLetter);
+        output = wordArray.join("") + "ay";
+    } else if (consonantDetector(consonantsArray, firstLetter) && consonantDetector2(consonantsArray, secondLetter)) {
+				wordArray.shift();
+				wordArray.shift();
+		wordArray.push(firstLetter, secondLetter);
+        output = wordArray.join("") + "ay";
+    } else if (consonantDetector(consonantsArray, firstLetter)) {
+        wordArray.shift();
+        wordArray.push(firstLetter);
+        output = wordArray.join("") + "ay";
+    } else {
+        output = wordArray.join("") + "way";
+    }
+    return output;
+}
 
-
+// Test 4: "For words beginning with 2 consonants it will move the first 2 
+// letters to the end and add 'ay"."
